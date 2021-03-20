@@ -3,6 +3,7 @@ stages:
   - Publish
 
 Build:
+  when: manual
   stage: Build
   image:
     name: containers.harderthanitneedstobe.com/kaniko-ci:latest
@@ -26,4 +27,5 @@ Push:
     - k8s:shared
     - arch:amd64
   script:
+    - env
     - ./image.sh push
