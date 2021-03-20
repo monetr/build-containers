@@ -15,7 +15,7 @@ Build:
 Push:
   secrets:
     DOCKER_CONFIG:
-      vault: push/docker-config.json@containers.harderthanitneedstobe.com
+      vault: containers/push/docker-config.json@pipelines/harderthanitneedstobe.com
   only:
     refs:
       - main
