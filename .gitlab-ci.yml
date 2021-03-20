@@ -15,19 +15,20 @@ Build:
 
 Push:
   secrets:
-    config.json:
+    DOCKER_CONFIG_JSON:
       vault: containers/push/docker-config.json@pipelines/harderthanitneedstobe.com
   only:
     refs:
       - main
   stage: Publish
   variables:
-    DOCKER_CONFIG: "${CI_PROJECT_DIR}.tmp"
+    DOCKER_CONFIG: "/docker-config.json"
   image:
     name: containers.harderthanitneedstobe.com/kaniko-ci:latest
   tags:
     - k8s:shared
     - arch:amd64
+  before_script:
+    - ln -s $DOCKER_CONFIG_JSON /docker-config.json
   script:
-    - env
     - ./image.sh push
