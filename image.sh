@@ -59,13 +59,21 @@ push() {
       local realImageVersion=${versionPath#"$basePath/$package/"};
       local gitImageVersion=$(git rev-parse --short HEAD);
       local combinedVersion=$(echo "$realImageVersion-$gitImageVersion");
-      local image=$(echo "containers.harderthanitneedstobe.com/$package:$combinedVersion")
-      local imageFineVersion=$(echo "containers.harderthanitneedstobe.com/$package:$realImageVersion")
-      local imageLatestVersion=$(echo "containers.harderthanitneedstobe.com/$package:latest")
+      local internalImage=$(echo "containers.harderthanitneedstobe.com/$package:$combinedVersion")
+      local internalImageFineVersion=$(echo "containers.harderthanitneedstobe.com/$package:$realImageVersion")
+      local internalImageLatestVersion=$(echo "containers.harderthanitneedstobe.com/$package:latest")
+      local githubImage=$(echo "ghcr.io/harderthanitneedstobe/build-containers/$package:$combinedVersion")
+      local githubImageFineVersion=$(echo "ghcr.io/harderthanitneedstobe/build-containers/$package:$realImageVersion")
+      local githubImageLatestVersion=$(echo "ghcr.io/harderthanitneedstobe/build-containers/$package:latest")
       kaniko --context "$versionPath" --dockerfile "$versionPath/Dockerfile" \
-        --destination $image \
-        --destination $imageFineVersion \
-        --destination $imageLatestVersion
+        --label org.opencontainers.image.url=https://github.com/harderthanitneedstobe/build-containers \
+        --label org.opencontainers.image.source=https://github.com/harderthanitneedstobe/build-containers \
+        --destination $internalImage \
+        --destination $internalImageFineVersion \
+        --destination $internalImageLatestVersion \
+        --destination $githubImage \
+        --destination $githubImageFineVersion \
+        --destination $githubImageLatestVersion
     done
   done
 }
