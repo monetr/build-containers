@@ -15,12 +15,14 @@ Build:
 
 Push:
   secrets:
-    DOCKER_CONFIG:
+    config.json:
       vault: containers/push/docker-config.json@pipelines/harderthanitneedstobe.com
   only:
     refs:
       - main
   stage: Publish
+  variables:
+    DOCKER_CONFIG: "${CI_PROJECT_DIR}.tmp"
   image:
     name: containers.harderthanitneedstobe.com/kaniko-ci:latest
   tags:
