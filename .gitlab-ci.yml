@@ -4,8 +4,7 @@ stages:
 Build:
   stage: Build Containers
   image:
-    name: gcr.io/kaniko-project/executor:debug
-    entrypoint: [ "" ]
+    name: containers.harderthanitneedstobe.com/kaniko-test
   tags:
     - k8s:shared
     - arch:amd64
