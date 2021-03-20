@@ -4,7 +4,7 @@ stages:
 Build:
   stage: Build Containers
   image:
-    name: containers.harderthanitneedstobe.com/kaniko-test:latest
+    name: containers.harderthanitneedstobe.com/kaniko-ci:latest
   tags:
     - k8s:shared
     - arch:amd64
