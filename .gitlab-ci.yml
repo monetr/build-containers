@@ -1,0 +1,13 @@
+stages:
+  - Build Containers
+
+Build:
+  stage: Build Containers
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [ "" ]
+  tags:
+    - k8s:shared
+    - arch:amd64
+  script:
+    - ./build.sh build
