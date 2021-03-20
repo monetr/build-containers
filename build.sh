@@ -13,6 +13,10 @@ realpath() {
   echo "$REALPATH"
 }
 
+commandExists () {
+    type "$1" &> /dev/null ;
+}
+
 build() {
   basePath=$(realpath ./images)
   for packageDir in ./images/*/ ; do
@@ -33,15 +37,17 @@ build() {
 function buildImage() {
   local versionPath=$1;
   local image=$2;
-  if test -f "/kaniko/executor"; then
-    echo "Building $image using Kaniko from $versionPath";
-    /kaniko/executor --context "$versionPath" --dockerfile "$versionPath/Dockerfile" --no-push
-  else
-    echo "Building $image using Docker from $versionPath";
-    docker build -t $image -f "$versionPath/Dockerfile" $versionPath
-    docker image tag $image $image
-  fi
 
+  echo "Building $image using Kaniko from $versionPath";
+  kaniko --context "$versionPath" --dockerfile "$versionPath/Dockerfile" --no-push
+#  if commandExists kaniko; then
+#    echo "Building $image using Kaniko from $versionPath";
+#    kaniko --context "$versionPath" --dockerfile "$versionPath/Dockerfile" --no-push
+#  else
+#    echo "Building $image using Docker from $versionPath";
+#    docker build -t $image -f "$versionPath/Dockerfile" $versionPath
+#    docker image tag $image $image
+#  fi
 }
 
 $1
