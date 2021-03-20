@@ -21,14 +21,12 @@ Push:
     refs:
       - main
   stage: Publish
-  variables:
-    DOCKER_CONFIG: "/docker-config.json"
   image:
     name: containers.harderthanitneedstobe.com/kaniko-ci:latest
   tags:
     - k8s:shared
     - arch:amd64
   before_script:
-    - ln -s $DOCKER_CONFIG_JSON /docker-config.json
+    - ln -s $DOCKER_CONFIG_JSON /kaniko/.docker/config.json
   script:
     - ./image.sh push
