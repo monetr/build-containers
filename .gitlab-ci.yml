@@ -3,7 +3,6 @@ stages:
   - Publish
 
 Build:
-  when: manual
   stage: Build
   image:
     name: containers.harderthanitneedstobe.com/kaniko-ci:latest
