@@ -5,4 +5,7 @@ RUN apt-get update && apt-get install -y \
     gnupg2 \
     lsb-release \
     software-properties-common \
-    build-essential
+    build-essential \
+    gcc \
+    make \
+    golang-1.16
