@@ -5,7 +5,8 @@ RUN apt-get update && apt-get install -y \
     gnupg2 \
     lsb-release \
     software-properties-common \
-    build-essential
+    build-essential \
+    wget
 
 # Install node.
 RUN curl -fsSL https://deb.nodesource.com/setup_15.x | bash -
