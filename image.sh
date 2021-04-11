@@ -22,7 +22,8 @@ function buildImage() {
   local image=$2;
 
   echo "Building $image using Kaniko from $versionPath";
-  kaniko --context "$versionPath" --dockerfile "$versionPath/Dockerfile" --no-push
+#  (cd "$versionPath" && docker build -f "$versionPath"/Dockerfile "$versionPath");
+  kaniko --context "$versionPath" --dockerfile "$versionPath/Dockerfile" --no-push || exit 1;
 }
 
 function pushImage() {
