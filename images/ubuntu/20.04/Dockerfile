@@ -6,7 +6,8 @@ RUN apt-get update && apt-get install -y \
     lsb-release \
     software-properties-common \
     build-essential \
-    wget
+    wget \
+    postgresql-client
 
 # Install node.
 RUN curl -fsSL https://deb.nodesource.com/setup_15.x | bash -
