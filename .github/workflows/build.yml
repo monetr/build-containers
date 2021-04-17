@@ -11,11 +11,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - mainTag: containers.monetr.dev/golang
-            path: images/golang/
+          - path: golang
             version: 1.16.3
-          - mainTag: containers.monetr.dev/ubuntu
-            path: images/ubuntu/
+          - path: ubuntu
             version: 20.04
     steps:
       - uses: actions/checkout@v2
@@ -28,6 +26,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: false
-          file: ${{ matrix.path }}${{ matrix.version }}/Dockerfile
-          context: ${{ matrix.path }}${{ matrix.version }}
-          tags: ${{ matrix.maintTag }}:${{ matrix.version }}
+          file: images/${{ matrix.path }}/${{ matrix.version }}/Dockerfile
+          context: images/${{ matrix.path }}/${{ matrix.version }}
+          tags: containers.monetr.dev/${{ matrix.path }}:${{ matrix.version }}
