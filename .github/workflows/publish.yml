@@ -36,7 +36,10 @@ jobs:
           password: ${{ secrets.containers_push_password }}
           dockerfile: images/${{ matrix.path }}/${{ matrix.version }}/Dockerfile
           path: images/${{ matrix.path }}/${{ matrix.version }}
-          tags: ${{ matrix.version }}-${{ steps.tag.outputs.POST_TAG }}
+          tags: |
+            latest
+            ${{ matrix.version}}
+            ${{ matrix.version }}-${{ steps.tag.outputs.POST_TAG }}
           repository: ${{ matrix.path }}
       - name: Build and push ghcr.io
         uses: docker/build-push-action@v1
@@ -46,7 +49,10 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           dockerfile: images/${{ matrix.path }}/${{ matrix.version }}/Dockerfile
           path: images/${{ matrix.path }}/${{ matrix.version }}
-          tags: ${{ matrix.version }}-${{ steps.tag.outputs.POST_TAG }}
+          tags: |
+            latest
+            ${{ matrix.version}}
+            ${{ matrix.version }}-${{ steps.tag.outputs.POST_TAG }}
           repository: monetrapp/build-containers/${{ matrix.path }}
 
 #      - name: Login to containers.monetr.dev
