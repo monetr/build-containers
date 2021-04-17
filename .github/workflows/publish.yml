@@ -24,8 +24,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Generate Tag
+        id: tag
         run: |
-          echo ::set-env name=POST_TAG::$(date +%Y.%m.%d)
+          echo ::set-output name=POST_TAG::$(date +%Y.%m.%d)
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
@@ -50,5 +51,5 @@ jobs:
           file: images/${{ matrix.path }}/${{ matrix.version }}/Dockerfile
           context: images/${{ matrix.path }}/${{ matrix.version }}
           tags: -|
-            containers.monetr.dev/${{ matrix.path }}:${{ matrix.version }}-${{ env.POST_TAG }}
-            ghcr.io/monetrapp/build-containers/${{ matrix.path }}:${{ matrix.version }}-${{ env.POST_TAG }}
+            containers.monetr.dev/${{ matrix.path }}:${{ matrix.version }}-${{ steps.tag.outputs.POST_TAG }}
+            ghcr.io/monetrapp/build-containers/${{ matrix.path }}:${{ matrix.version }}-${{ steps.tag.outputs.POST_TAG }}
