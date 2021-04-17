@@ -51,5 +51,5 @@ jobs:
           push: true
           file: images/${{ matrix.path }}/${{ matrix.version }}/Dockerfile
           context: images/${{ matrix.path }}/${{ matrix.version }}
-          tags: containers.monetr.dev/${{ matrix.path }}:${{ matrix.version }}-${{ steps.tag.outputs.POST_TAG }}
+          tags: containers.monetr.dev/${{ matrix.path }}:${{ matrix.version }}
 #            ghcr.io/${{ github.repository_owner }}/build-containers/${{ matrix.path }}:${{ matrix.version }}-${{ steps.tag.outputs.POST_TAG }}
