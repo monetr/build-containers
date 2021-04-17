@@ -41,8 +41,8 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
-          username: elliotcourant
-          password: ${{ secrets.ghcr_password }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build Image
         id: docker_build
         uses: docker/build-push-action@v2
@@ -52,4 +52,4 @@ jobs:
           context: images/${{ matrix.path }}/${{ matrix.version }}
           tags: |
             containers.monetr.dev/${{ matrix.path }}:${{ matrix.version }}-${{ steps.tag.outputs.POST_TAG }}
-            ghcr.io/monetrapp/build-containers/${{ matrix.path }}:${{ matrix.version }}-${{ steps.tag.outputs.POST_TAG }}
+            ghcr.io/${{ github.repository_owner }}/build-containers/${{ matrix.path }}:${{ matrix.version }}-${{ steps.tag.outputs.POST_TAG }}
