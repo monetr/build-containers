@@ -44,7 +44,7 @@ build() {
       local realImageVersion=${versionPath#"$basePath/$package/"};
       local gitImageVersion=$(git rev-parse --short HEAD);
       local combinedVersion=$(echo "$realImageVersion-$gitImageVersion");
-      local image=$(echo "containers.harderthanitneedstobe.com/$package:$combinedVersion")
+      local image=$(echo "containers.monetr.dev/$package:$combinedVersion")
       buildImage $versionPath $image;
     done
   done
@@ -60,15 +60,15 @@ push() {
       local realImageVersion=${versionPath#"$basePath/$package/"};
       local gitImageVersion=$(git rev-parse --short HEAD);
       local combinedVersion=$(echo "$realImageVersion-$gitImageVersion");
-      local internalImage=$(echo "containers.harderthanitneedstobe.com/$package:$combinedVersion")
-      local internalImageFineVersion=$(echo "containers.harderthanitneedstobe.com/$package:$realImageVersion")
-      local internalImageLatestVersion=$(echo "containers.harderthanitneedstobe.com/$package:latest")
-      local githubImage=$(echo "ghcr.io/harderthanitneedstobe/build-containers/$package:$combinedVersion")
-      local githubImageFineVersion=$(echo "ghcr.io/harderthanitneedstobe/build-containers/$package:$realImageVersion")
-      local githubImageLatestVersion=$(echo "ghcr.io/harderthanitneedstobe/build-containers/$package:latest")
+      local internalImage=$(echo "containers.monetr.dev/$package:$combinedVersion")
+      local internalImageFineVersion=$(echo "containers.monetr.dev/$package:$realImageVersion")
+      local internalImageLatestVersion=$(echo "containers.monetr.dev/$package:latest")
+      local githubImage=$(echo "ghcr.io/monetrapp/build-containers/$package:$combinedVersion")
+      local githubImageFineVersion=$(echo "ghcr.io/monetrapp/build-containers/$package:$realImageVersion")
+      local githubImageLatestVersion=$(echo "ghcr.io/monetrapp/build-containers/$package:latest")
       kaniko --context "$versionPath" --dockerfile "$versionPath/Dockerfile" \
-        --label org.opencontainers.image.url=https://github.com/harderthanitneedstobe/build-containers \
-        --label org.opencontainers.image.source=https://github.com/harderthanitneedstobe/build-containers \
+        --label org.opencontainers.image.url=https://github.com/monetrapp/build-containers \
+        --label org.opencontainers.image.source=https://github.com/monetrapp/build-containers \
         --destination $internalImage \
         --destination $internalImageFineVersion \
         --destination $internalImageLatestVersion \
