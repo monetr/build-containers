@@ -16,3 +16,7 @@ RUN apt-get install -y nodejs
 # Install golang.
 RUN wget -c https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
 RUN tar -C /usr/local -xvzf go1.16.3.linux-amd64.tar.gz
+
+ENV GOPATH /go
+ENV PATH $GOPATH/bin:$PATH:
+RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
