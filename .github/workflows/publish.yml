@@ -5,12 +5,6 @@ on:
     branches:
       - main
 
-#          - path: golang
-#          version: 1.16.3
-#            - path: node
-#              version: 15.14.0-buster
-#        - path: ubuntu
-#          version: 20.04
 
 jobs:
   docker:
@@ -22,16 +16,18 @@ jobs:
         include:
           - path: postgres
             version: 13
+          - path: golang
+            version: 1.16.3
+          - path: node
+            version: 15.14.0-buster
+          - path: ubuntu
+            version: 20.04
     steps:
       - uses: actions/checkout@v2
       - name: Generate Tag
         id: tag
         run: |
           echo ::set-output name=POST_TAG::$(date +%Y.%m.%d)
-#      - name: Set up QEMU
-#        uses: docker/setup-qemu-action@v1
-#      - name: Set up Docker Buildx
-#        uses: docker/setup-buildx-action@v1
       - name: Build and push Docker images
         uses: docker/build-push-action@v1
         with:
