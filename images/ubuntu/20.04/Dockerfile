@@ -20,4 +20,6 @@ RUN tar -C /usr/local -xvzf go1.16.3.linux-amd64.tar.gz
 
 ENV GOPATH /home/go
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
-ENV PATH $GOPATH:/usr/local/go/bin:$PATH:
+ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH:
+
+RUN go get github.com/swaggo/swag/cmd/swag
