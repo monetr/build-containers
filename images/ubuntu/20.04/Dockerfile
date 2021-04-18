@@ -23,3 +23,4 @@ RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH:
 
 RUN go get github.com/swaggo/swag/cmd/swag
+RUN npm install -g yarn
