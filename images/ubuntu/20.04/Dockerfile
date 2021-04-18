@@ -8,7 +8,8 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     wget \
     postgresql-client \
-    git
+    git \
+    rsync
 
 # Install node.
 RUN curl -fsSL https://deb.nodesource.com/setup_15.x | bash -
