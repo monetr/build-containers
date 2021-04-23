@@ -9,8 +9,12 @@ RUN apt-get update && apt-get install -y \
     wget \
     postgresql-client \
     git \
-    rsync \
-    kubectl
+    rsync
+
+# Install kubectl
+RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add
+RUN apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+RUN apt-get install -y kubectl
 
 # Install node.
 RUN curl -fsSL https://deb.nodesource.com/setup_15.x | bash -
