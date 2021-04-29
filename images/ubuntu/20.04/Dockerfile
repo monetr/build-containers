@@ -35,4 +35,4 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.c
 RUN go get github.com/swaggo/swag/cmd/swag
 
 # Install yarn
-RUN npm install -g yarn
+RUN npm install -g yarn @sentry/cli
