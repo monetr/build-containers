@@ -46,4 +46,4 @@ jobs:
           dockerfile: images/${{ matrix.path }}/${{ matrix.version }}/Dockerfile
           path: images/${{ matrix.path }}/${{ matrix.version }}
           tags: latest,${{ matrix.version}},${{ matrix.version }}-${{ steps.tag.outputs.POST_TAG }}
-          repository: monetrapp/build-containers/${{ matrix.path }}
+          repository: monetr/build-containers/${{ matrix.path }}
