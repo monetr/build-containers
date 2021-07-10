@@ -8,7 +8,9 @@ steps:
             'images/ubuntu/20.04',
     ]
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'image', 'push', '--all-tags',
-            'gcr.io/production-315018/github.com/monetr/build-containers/ubuntu',
-    ]
+    args: [ 'push', 'gcr.io/production-315018/github.com/monetr/build-containers/ubuntu:20.04' ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'push', 'gcr.io/production-315018/github.com/monetr/build-containers/ubuntu:$COMMIT_SHA' ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'push', 'gcr.io/production-315018/github.com/monetr/build-containers/ubuntu:20.04-$COMMIT_SHA' ]
 
