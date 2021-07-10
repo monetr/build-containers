@@ -8,8 +8,7 @@ steps:
             'images/ubuntu/20.04',
     ]
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'push',
-            '--all-tags',
+    args: [ 'image', 'push', '--all-tags',
             'gcr.io/production-315018/github.com/monetr/build-containers/ubuntu',
     ]
 
