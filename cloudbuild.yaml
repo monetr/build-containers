@@ -1,0 +1,16 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'build',
+            '-t', 'gcr.io/production-315018/github.com/monetr/build-containers/ubuntu:20.04',
+            '-t', 'gcr.io/production-315018/github.com/monetr/build-containers/ubuntu:$COMMIT_SHA',
+            '-t', 'gcr.io/production-315018/github.com/monetr/build-containers/ubuntu:20.04-$COMMIT_SHA',
+            '-f', 'images/ubuntu/20.04/Dockerfile',
+            'images/ubuntu/20.04',
+    ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'push',
+            'gcr.io/production-315018/github.com/monetr/build-containers/ubuntu:20.04',
+            'gcr.io/production-315018/github.com/monetr/build-containers/ubuntu:$COMMIT_SHA',
+            'gcr.io/production-315018/github.com/monetr/build-containers/ubuntu:20.04-$COMMIT_SHA',
+    ]
+
