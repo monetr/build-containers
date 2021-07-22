@@ -1,16 +1,60 @@
 steps:
-  - name: 'gcr.io/cloud-builders/docker'
+  - id: build-ubuntu
+    waitFor: [ '-' ]
+    name: 'gcr.io/cloud-builders/docker'
     args: [ 'build',
-            '-t', 'gcr.io/$PROJECT_ID/github.com/monetr/build-containers/ubuntu:20.04',
+            '-t', 'gcr.io/$PROJECT_ID/github.com/monetr/build-containers/ubuntu:${_UBUNTU_VERSION}',
             '-t', 'gcr.io/$PROJECT_ID/github.com/monetr/build-containers/ubuntu:$COMMIT_SHA',
-            '-t', 'gcr.io/$PROJECT_ID/github.com/monetr/build-containers/ubuntu:20.04-$COMMIT_SHA',
-            '-f', 'images/ubuntu/20.04/Dockerfile',
-            'images/ubuntu/20.04',
+            '-t', 'gcr.io/$PROJECT_ID/github.com/monetr/build-containers/ubuntu:${_UBUNTU_VERSION}-$COMMIT_SHA',
+            '-f', 'images/ubuntu/${_UBUNTU_VERSION}/Dockerfile',
+            'images/ubuntu/${_UBUNTU_VERSION}',
+    ]
+  - id: build-golang
+    waitFor: [ '-' ]
+    name: 'gcr.io/cloud-builders/docker'
+    args: [ 'build',
+            '-t', 'gcr.io/$PROJECT_ID/github.com/monetr/build-containers/golang:${_GOLANG_VERSION}',
+            '-t', 'gcr.io/$PROJECT_ID/github.com/monetr/build-containers/golang:$COMMIT_SHA',
+            '-t', 'gcr.io/$PROJECT_ID/github.com/monetr/build-containers/golang:${_GOLANG_VERSION}-$COMMIT_SHA',
+            '-f', 'images/golang/${_GOLANG_VERSION}/Dockerfile',
+            'images/golang/${_GOLANG_VERSION}',
+    ]
+  - id: build-node
+    waitFor: [ '-' ]
+    name: 'gcr.io/cloud-builders/docker'
+    args: [ 'build',
+            '-t', 'gcr.io/$PROJECT_ID/github.com/monetr/build-containers/node:${_NODE_VERSION}',
+            '-t', 'gcr.io/$PROJECT_ID/github.com/monetr/build-containers/node:$COMMIT_SHA',
+            '-t', 'gcr.io/$PROJECT_ID/github.com/monetr/build-containers/node:${_NODE_VERSION}-$COMMIT_SHA',
+            '-f', 'images/node/${_NODE_VERSION}/Dockerfile',
+            'images/node/${_NODE_VERSION}',
     ]
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'push', 'gcr.io/$PROJECT_ID/github.com/monetr/build-containers/ubuntu:20.04' ]
+    args: [ 'push', 'gcr.io/$PROJECT_ID/github.com/monetr/build-containers/ubuntu:${_UBUNTU_VERSION}' ]
+    waitFor:
+      - 'build-ubuntu'
   - name: 'gcr.io/cloud-builders/docker'
     args: [ 'push', 'gcr.io/$PROJECT_ID/github.com/monetr/build-containers/ubuntu:$COMMIT_SHA' ]
+    waitFor:
+      - 'build-ubuntu'
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'push', 'gcr.io/$PROJECT_ID/github.com/monetr/build-containers/ubuntu:20.04-$COMMIT_SHA' ]
+    args: [ 'push', 'gcr.io/$PROJECT_ID/github.com/monetr/build-containers/ubuntu:${_UBUNTU_VERSION}-$COMMIT_SHA' ]
+    waitFor:
+      - 'build-ubuntu'
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'push', 'gcr.io/$PROJECT_ID/github.com/monetr/build-containers/golang:${_GOLANG_VERSION}' ]
+    waitFor:
+      - 'build-golang'
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'push', 'gcr.io/$PROJECT_ID/github.com/monetr/build-containers/golang:$COMMIT_SHA' ]
+    waitFor:
+      - 'build-golang'
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'push', 'gcr.io/$PROJECT_ID/github.com/monetr/build-containers/golang:${_GOLANG_VERSION}-$COMMIT_SHA' ]
+    waitFor:
+      - 'build-golang'
+substitutions:
+  _UBUNTU_VERSION: '20.04'
+  _GOLANG_VERSION: '1.16.6'
+  _NODE_VERSION: '16.5.0-buster'
 
