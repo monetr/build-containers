@@ -79,6 +79,6 @@ steps:
       - 'build-node'
 substitutions:
   _UBUNTU_VERSION: '20.04'
-  _GOLANG_VERSION: '1.16.6'
+  _GOLANG_VERSION: '1.17.0'
   _NODE_VERSION: '16.5.0-buster'
 
