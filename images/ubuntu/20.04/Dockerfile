@@ -17,12 +17,12 @@ RUN apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
 RUN apt-get install -y kubectl
 
 # Install node.
-RUN curl -fsSL https://deb.nodesource.com/setup_15.x | bash -
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get install -y nodejs
 
 # Install golang.
-RUN wget -c https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
-RUN tar -C /usr/local -xvzf go1.16.3.linux-amd64.tar.gz
+RUN wget -c https://golang.org/dl/go1.17.1.linux-amd64.tar.gz
+RUN tar -C /usr/local -xvzf go1.17.1.linux-amd64.tar.gz
 
 ENV GOPATH /home/go
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"

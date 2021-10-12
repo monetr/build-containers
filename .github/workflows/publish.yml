@@ -14,11 +14,11 @@ jobs:
       matrix:
         include:
           - path: golang
-            version: 1.17.0
+            version: 1.17.1
           - path: node
             version: 16.5.0-buster
           - path: postgres
-            version: 13
+            version: 14
           - path: ubuntu
             version: 20.04
     steps:
