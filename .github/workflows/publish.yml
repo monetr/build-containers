@@ -29,16 +29,6 @@ jobs:
         id: tag
         run: |
           echo ::set-output name=POST_TAG::$(date +%Y.%m.%d)
-      - name: Build and push Docker images
-        uses: docker/build-push-action@v1
-        with:
-          registry: containers.monetr.dev
-          username: ${{ secrets.containers_push_username }}
-          password: ${{ secrets.containers_push_password }}
-          dockerfile: images/${{ matrix.path }}/${{ matrix.version }}/Dockerfile
-          path: images/${{ matrix.path }}/${{ matrix.version }}
-          tags: latest,${{ matrix.version}},${{ matrix.version }}-${{ steps.tag.outputs.POST_TAG }}
-          repository: ${{ matrix.path }}
       - name: Build and push ghcr.io
         uses: docker/build-push-action@v1
         with:
