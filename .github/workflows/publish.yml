@@ -14,9 +14,9 @@ jobs:
       matrix:
         include:
           - path: golang
-            version: 1.17.2
+            version: 1.17.3
           - path: node
-            version: 16.11.0-buster
+            version: 17.0.1-buster
           - path: postgres
             version: 14
           - path: ubuntu
