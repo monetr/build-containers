@@ -30,7 +30,7 @@ jobs:
         run: |
           echo ::set-output name=POST_TAG::$(date +%Y.%m.%d)
       - name: Build and push ghcr.io
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
