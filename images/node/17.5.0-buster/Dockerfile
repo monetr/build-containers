@@ -1,1 +1,1 @@
-FROM node:17.5.0-buster
+FROM node:17.9.1-buster
