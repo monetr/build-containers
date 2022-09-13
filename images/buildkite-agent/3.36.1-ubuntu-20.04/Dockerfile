@@ -1,4 +1,4 @@
-FROM buildkite/agent:3.33.3-ubuntu-20.04
+FROM buildkite/agent:3.36.1-ubuntu-20.04
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
     curl \
