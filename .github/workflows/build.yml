@@ -19,6 +19,8 @@ jobs:
             version: 17.5.0-buster
           - path: postgres
             version: 14
+          - path: debian
+            version: 11.5
           - path: ubuntu
             version: 20.04
           - path: buildkite-agent

@@ -19,6 +19,8 @@ jobs:
             version: 17.5.0-buster
           - path: postgres
             version: 14
+          - path: debian
+            version: 11.5
           - path: ubuntu
             version: 20.04
           - path: buildkite-agent
@@ -28,7 +30,7 @@ jobs:
       - name: Generate Tag
         id: tag
         run: |
-          echo ::set-output name=POST_TAG::$(date +%Y.%m.%d)
+          echo ::set-output name=POST_TAG::$(git describe --tag | cut -d "-" -f 2,3)
       - name: Build and push ghcr.io
         uses: docker/build-push-action@v1
         with:
