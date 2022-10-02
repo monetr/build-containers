@@ -16,7 +16,7 @@ jobs:
           - path: golang
             version: 1.19.1
           - path: node
-            version: 17.5.0-buster
+            version: 18.10.0-buster
           - path: postgres
             version: 14
           - path: debian
