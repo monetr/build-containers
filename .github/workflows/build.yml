@@ -24,7 +24,7 @@ jobs:
           - path: ubuntu
             version: 20.04
           - path: buildkite-agent
-            version: 3.39.0-ubuntu-20.04
+            version: 3.40.0-ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
         with:
