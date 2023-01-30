@@ -34,7 +34,7 @@ jobs:
         run: |
           echo ::set-output name=POST_TAG::$(git describe --tag | cut -d "-" -f 2,3)
       - name: Build and push ghcr.io
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
