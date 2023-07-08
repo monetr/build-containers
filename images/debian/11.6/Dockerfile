@@ -16,7 +16,8 @@ RUN apt-get update && apt-get install -y \
     g++ \
     apt-transport-https \
     ca-certificates \
-    podman
+    podman \
+    buildah
 
 # Helm CLI
 RUN curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | tee /usr/share/keyrings/helm.gpg > /dev/null && \
