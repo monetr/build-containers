@@ -1,4 +1,4 @@
-FROM debian:11.6
+FROM debian:11.7
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
     curl \
