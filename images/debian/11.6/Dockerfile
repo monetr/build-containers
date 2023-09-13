@@ -19,7 +19,8 @@ RUN apt-get update && apt-get install -y \
     podman \
     buildah \
     cmake \
-    ruby
+    ruby \
+    libssl-dev
 
 # Helm CLI
 RUN curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | tee /usr/share/keyrings/helm.gpg > /dev/null && \
