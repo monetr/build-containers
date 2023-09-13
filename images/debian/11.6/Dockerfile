@@ -17,7 +17,8 @@ RUN apt-get update && apt-get install -y \
     apt-transport-https \
     ca-certificates \
     podman \
-    buildah
+    buildah \
+    cmake
 
 # Helm CLI
 RUN curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | tee /usr/share/keyrings/helm.gpg > /dev/null && \
@@ -57,5 +58,5 @@ ENV GOPATH /home/go
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH:
 
-# Install yarn
-RUN npm install -g yarn @sentry/cli
+# Install pnpm
+RUN npm install -g pnpm @sentry/cli
