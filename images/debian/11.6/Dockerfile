@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
     podman \
     buildah \
     cmake \
-    ruby \
+    ruby-full \
     libssl-dev
 
 # Helm CLI
