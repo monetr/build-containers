@@ -20,7 +20,8 @@ RUN apt-get update && apt-get install -y \
     buildah \
     cmake \
     ruby-full \
-    libssl-dev
+    libssl-dev \
+    pkg-config
 
 # Helm CLI
 RUN curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | tee /usr/share/keyrings/helm.gpg > /dev/null && \
