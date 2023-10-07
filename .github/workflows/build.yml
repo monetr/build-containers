@@ -20,7 +20,7 @@ jobs:
           - path: postgres
             version: 14
           - path: debian
-            version: 11.6
+            version: 12.1
           - path: ubuntu
             version: 20.04
           - path: buildkite-agent
