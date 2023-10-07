@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y \
     buildah \
     cmake \
     ruby-full \
+    ruby-dev \
     libssl-dev \
     pkg-config
 
