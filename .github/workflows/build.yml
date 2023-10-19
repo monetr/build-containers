@@ -26,7 +26,7 @@ jobs:
           - path: buildkite-agent
             version: 3.40.0-ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Set up QEMU
