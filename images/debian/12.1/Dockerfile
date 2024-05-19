@@ -55,8 +55,8 @@ RUN apt-get update -y && \
     docker-compose-plugin
 
 # Install golang.
-RUN wget -c https://golang.org/dl/go1.20.2.linux-amd64.tar.gz
-RUN tar -C /usr/local -xzf go1.20.2.linux-amd64.tar.gz
+RUN wget -c https://golang.org/dl/go1.22.2.linux-amd64.tar.gz
+RUN tar -C /usr/local -xzf go1.22.2.linux-amd64.tar.gz
 
 ENV GOPATH /home/go
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
