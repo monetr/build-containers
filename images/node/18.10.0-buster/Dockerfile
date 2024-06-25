@@ -1,2 +1,2 @@
-FROM node:18.10.0-buster
+FROM node:20.15.0-buster
 RUN npm install -g pnpm
